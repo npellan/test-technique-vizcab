@@ -8,10 +8,16 @@ import axiosInstance from 'src/api';
 // == Composant
 const App = () => {
   const [employees, setEmployees] = useState([]);
+  const [page, setPage] = useState(1);
 
   const fetchEmployeesData = async () => {
     const response = await axiosInstance.get('/');
     setEmployees(response.data);
+  };
+
+  const fetchMoreEmployees = () => {
+    fetchEmployeesData();
+    setPage(page + 1);
   };
 
   useEffect(() => {
@@ -34,6 +40,8 @@ const App = () => {
           </div>
         ))}
       </div>
+      <button type="button" className="more-employees" onClick={fetchMoreEmployees}>Afficher plus d'employés</button>
+      <p className="pagination">Page {page}</p>
     </div>
   );
 };
