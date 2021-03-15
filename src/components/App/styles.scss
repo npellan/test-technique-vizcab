@@ -1,0 +1,56 @@
+.app {
+  width: 700px;
+  margin: 1em auto;
+  text-align: center;
+
+  &__title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 3rem;
+  }
+}
+
+.employees {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.employee {
+  width: 45%;
+  border-radius: 5px;
+  margin: 1rem;
+  padding: 1rem;
+  background-color: #ecf0f1;
+
+  @media screen and (max-width: 450px) {
+    width: 100%;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    transition: .2s ease-in-out;
+  }
+
+  &__name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: .5rem;
+  }
+
+  &__job {
+    font-size: 1.2rem;
+    font-style: italic;
+    margin-bottom: .5rem;
+  }
+
+  &__department {
+    margin-bottom: .5rem;
+  }
+
+  &__company {
+    text-transform: uppercase;
+  }
+}
+
+
