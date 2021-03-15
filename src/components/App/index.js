@@ -7,28 +7,30 @@ import axiosInstance from 'src/api';
 
 // == Composant
 const App = () => {
-  const [employees, setEmployees] = useState([]);
+  const [employeesData, setEmployeesData] = useState([]);
   const [page, setPage] = useState(1);
 
-  const fetchEmployeesData = async () => {
+  const fetchEmployeesDataFromAPI = async () => {
     const response = await axiosInstance.get('/');
-    setEmployees(response.data);
+    setEmployeesData(response.data);
   };
 
-  const fetchMoreEmployees = () => {
-    fetchEmployeesData();
+  const fetchMoreEmployeesOnClick = () => {
+    // fetch a new array of employees from API
+    fetchEmployeesDataFromAPI();
+    // update the pagination
     setPage(page + 1);
   };
 
   useEffect(() => {
-    fetchEmployeesData();
+    fetchEmployeesDataFromAPI();
   }, []);
 
   return (
     <div className="app">
       <h1 className="app__title">My Employees</h1>
       <div className="employees">
-        {employees.map((employee) => (
+        {employeesData.map((employee) => (
           <div
             className="employee"
             key={employee.id}
@@ -40,7 +42,7 @@ const App = () => {
           </div>
         ))}
       </div>
-      <button type="button" className="more-employees" onClick={fetchMoreEmployees}>Afficher plus d'employés</button>
+      <button type="button" className="more-employees" onClick={fetchMoreEmployeesOnClick}>Afficher plus d'employés</button>
       <p className="pagination">Page {page}</p>
     </div>
   );
